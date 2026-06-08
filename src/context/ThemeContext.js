@@ -4,89 +4,74 @@ const PALETTES = [
   {
     id: 'dark-blue',
     label: '다크블루',
-    swatch: '#1a3a6b',
+    swatch: '#2051a3',
     vars: {
-      '--dark-blue':         '#0d1b2a',
-      '--royal-blue':        '#1a3a6b',
-      '--royal-blue-light':  '#2051a3',
-      '--royal-blue-hover':  '#254d8e',
-      '--dark-green':        '#1b4332',
-      '--dark-green-light':  '#2d6a4f',
-      '--dark-red':          '#7b1d1d',
-      '--dark-red-light':    '#a32323',
+      '--accent':       '#2051a3',
+      '--accent-dark':  '#1a3a6b',
+      '--accent-hover': '#254d8e',
+      '--green':        '#2d6a4f',
+      '--green-dark':   '#1b4332',
+      '--red':          '#a32323',
+      '--red-dark':     '#7b1d1d',
     },
   },
   {
     id: 'midnight',
     label: '미드나잇',
-    swatch: '#4a1a7a',
+    swatch: '#6a35c2',
     vars: {
-      '--dark-blue':         '#0e0a1a',
-      '--royal-blue':        '#3b1a6b',
-      '--royal-blue-light':  '#6a35c2',
-      '--royal-blue-hover':  '#5528a8',
-      '--dark-green':        '#1a3b2a',
-      '--dark-green-light':  '#2d6a50',
-      '--dark-red':          '#7b1d3a',
-      '--dark-red-light':    '#c23060',
+      '--accent':       '#6a35c2',
+      '--accent-dark':  '#3b1a6b',
+      '--accent-hover': '#5528a8',
+      '--green':        '#2d6a50',
+      '--green-dark':   '#1a3b2a',
+      '--red':          '#c23060',
+      '--red-dark':     '#7b1d3a',
     },
   },
   {
     id: 'ocean',
     label: '오션',
-    swatch: '#0a4a6b',
+    swatch: '#0e7ac4',
     vars: {
-      '--dark-blue':         '#021b2e',
-      '--royal-blue':        '#0a3a5a',
-      '--royal-blue-light':  '#0e7ac4',
-      '--royal-blue-hover':  '#0b5f9e',
-      '--dark-green':        '#0a3b2e',
-      '--dark-green-light':  '#118a60',
-      '--dark-red':          '#7b2a0a',
-      '--dark-red-light':    '#c4460e',
+      '--accent':       '#0e7ac4',
+      '--accent-dark':  '#0a3a5a',
+      '--accent-hover': '#0b5f9e',
+      '--green':        '#118a60',
+      '--green-dark':   '#0a3b2e',
+      '--red':          '#c4460e',
+      '--red-dark':     '#7b2a0a',
     },
   },
   {
     id: 'slate',
     label: '슬레이트',
-    swatch: '#334155',
+    swatch: '#3b82f6',
     vars: {
-      '--dark-blue':         '#0f172a',
-      '--royal-blue':        '#1e3a5f',
-      '--royal-blue-light':  '#3b82f6',
-      '--royal-blue-hover':  '#2563eb',
-      '--dark-green':        '#14532d',
-      '--dark-green-light':  '#16a34a',
-      '--dark-red':          '#7f1d1d',
-      '--dark-red-light':    '#dc2626',
+      '--accent':       '#3b82f6',
+      '--accent-dark':  '#1e3a5f',
+      '--accent-hover': '#2563eb',
+      '--green':        '#16a34a',
+      '--green-dark':   '#14532d',
+      '--red':          '#dc2626',
+      '--red-dark':     '#7f1d1d',
     },
   },
   {
     id: 'charcoal',
     label: '차콜',
-    swatch: '#374151',
+    swatch: '#6366f1',
     vars: {
-      '--dark-blue':         '#111827',
-      '--royal-blue':        '#1f2d4a',
-      '--royal-blue-light':  '#6366f1',
-      '--royal-blue-hover':  '#4f46e5',
-      '--dark-green':        '#064e3b',
-      '--dark-green-light':  '#059669',
-      '--dark-red':          '#7c2d12',
-      '--dark-red-light':    '#ea580c',
+      '--accent':       '#6366f1',
+      '--accent-dark':  '#1f2d4a',
+      '--accent-hover': '#4f46e5',
+      '--green':        '#059669',
+      '--green-dark':   '#064e3b',
+      '--red':          '#ea580c',
+      '--red-dark':     '#7c2d12',
     },
   },
 ];
-
-const LIGHT_OVERRIDES = {
-  '--dark-blue':   '#f0f4f8',
-  '--gray-800':    '#ffffff',
-  '--gray-600':    '#64748b',
-  '--gray-400':    '#475569',
-  '--gray-200':    '#1e293b',
-  '--gray-100':    '#e8edf2',
-  '--white':       '#0d1b2a',
-};
 
 const ThemeContext = createContext(null);
 
@@ -95,18 +80,17 @@ export function ThemeProvider({ children }) {
   const [isDark, setIsDark] = useState(() => localStorage.getItem('isDark') !== 'false');
 
   useEffect(() => {
+    const root = document.documentElement;
+    root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('isDark', isDark);
+  }, [isDark]);
+
+  useEffect(() => {
     const palette = PALETTES.find(p => p.id === paletteId) || PALETTES[0];
     const root = document.documentElement;
-
     Object.entries(palette.vars).forEach(([k, v]) => root.style.setProperty(k, v));
-
-    if (!isDark) {
-      Object.entries(LIGHT_OVERRIDES).forEach(([k, v]) => root.style.setProperty(k, v));
-    }
-
     localStorage.setItem('paletteId', paletteId);
-    localStorage.setItem('isDark', isDark);
-  }, [paletteId, isDark]);
+  }, [paletteId]);
 
   return (
     <ThemeContext.Provider value={{ paletteId, setPaletteId, isDark, setIsDark, palettes: PALETTES }}>

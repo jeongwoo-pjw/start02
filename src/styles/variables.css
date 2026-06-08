@@ -1,52 +1,84 @@
+/* ── 브랜드/팔레트 색상 (팔레트 전환 시 교체되는 값) ── */
 :root {
-  /* Main Colors */
-  --dark-blue: #0d1b2a;
-  --royal-blue: #1a3a6b;
-  --royal-blue-light: #2051a3;
-  --royal-blue-hover: #254d8e;
+  --accent:        #2051a3;
+  --accent-dark:   #1a3a6b;
+  --accent-hover:  #254d8e;
+  --green:         #2d6a4f;
+  --green-dark:    #1b4332;
+  --red:           #a32323;
+  --red-dark:      #7b1d1d;
+}
 
-  /* Point Colors */
-  --dark-green: #1b4332;
-  --dark-green-light: #2d6a4f;
-  --dark-red: #7b1d1d;
-  --dark-red-light: #a32323;
+/* ── 다크 모드 시맨틱 토큰 (기본) ── */
+:root,
+:root[data-theme="dark"] {
+  --bg-page:       #0d1b2a;
+  --bg-nav:        rgba(13, 27, 42, 0.95);
+  --bg-card:       #1a2a3e;
+  --bg-card-alt:   #162236;
+  --bg-input:      #1a2a3e;
 
-  /* Neutral */
-  --white: #ffffff;
-  --gray-100: #f4f6fa;
-  --gray-200: #e2e8f0;
-  --gray-400: #94a3b8;
-  --gray-600: #475569;
-  --gray-800: #1e293b;
+  --text-primary:   #f0f4f8;
+  --text-secondary: #c8d4e0;
+  --text-muted:     #8fa0b4;
+  --text-inverse:   #0d1b2a;
 
-  /* Typography */
-  --font-main: 'Noto Sans KR', 'Segoe UI', sans-serif;
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-md: 1rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.5rem;
+  --border:        rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+
+  --hero-gradient: linear-gradient(135deg, #0d1b2a 0%, #1a3a6b 60%, #0d1b2a 100%);
+  --hero-text:     #f0f4f8;
+}
+
+/* ── 라이트 모드 시맨틱 토큰 ── */
+:root[data-theme="light"] {
+  --bg-page:       #eef2f7;
+  --bg-nav:        rgba(238, 242, 247, 0.95);
+  --bg-card:       #ffffff;
+  --bg-card-alt:   #f4f7fb;
+  --bg-input:      #ffffff;
+
+  --text-primary:   #0d1b2a;
+  --text-secondary: #2d4057;
+  --text-muted:     #5a7090;
+  --text-inverse:   #f0f4f8;
+
+  --border:        rgba(0, 0, 0, 0.1);
+  --border-strong: rgba(0, 0, 0, 0.2);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+
+  --hero-gradient: linear-gradient(135deg, #1a3a6b 0%, #2051a3 60%, #1a3a6b 100%);
+  --hero-text:     #ffffff;
+}
+
+/* ── 타이포그래피 & 스페이싱 (모드 무관) ── */
+:root {
+  --font-main:     'Noto Sans KR', 'Segoe UI', sans-serif;
+  --font-size-xs:  0.75rem;
+  --font-size-sm:  0.875rem;
+  --font-size-md:  1rem;
+  --font-size-lg:  1.25rem;
+  --font-size-xl:  1.5rem;
   --font-size-2xl: 2rem;
   --font-size-3xl: 2.5rem;
 
-  /* Spacing */
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 40px;
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  40px;
   --space-2xl: 64px;
 
-  /* Border Radius */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
 
-  /* Shadow */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-
-  /* Transition */
   --transition: 0.25s ease;
 }
