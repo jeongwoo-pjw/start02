@@ -2,49 +2,45 @@
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  padding: 20px 0;
-  transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
+  padding: 18px 0;
+  transition: background var(--transition), padding var(--transition), box-shadow var(--transition), backdrop-filter var(--transition);
 }
 
 .header.scrolled {
   background: var(--bg-nav);
   padding: 12px 0;
-  box-shadow: var(--shadow-md);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 var(--border), var(--shadow-md);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+.header-inner { display: flex; align-items: center; justify-content: space-between; }
 
+/* 로고 */
 .logo { display: flex; align-items: center; gap: 10px; }
 
 .logo-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px; height: 40px;
-  background: var(--accent);
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--accent-dark), var(--accent));
   color: #ffffff;
-  font-weight: 900;
-  font-size: 0.95rem;
+  font-weight: 900; font-size: 0.9rem;
   border-radius: var(--radius-sm);
+  box-shadow: var(--glow);
+  letter-spacing: 0.5px;
 }
 
 .logo-text {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--hero-text);
-  letter-spacing: 2px;
+  font-size: 1.3rem; font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 3px;
 }
 
-.nav { display: flex; align-items: center; gap: 24px; }
+/* 네비 */
+.nav { display: flex; align-items: center; gap: 28px; }
 
 .nav-link {
-  font-size: var(--font-size-sm);
-  font-weight: 500;
+  font-size: var(--font-size-sm); font-weight: 500;
   color: var(--text-secondary);
   transition: color var(--transition);
   position: relative;
@@ -56,27 +52,27 @@
   width: 0; height: 2px;
   background: var(--accent);
   transition: width var(--transition);
+  border-radius: 2px;
 }
 .nav-link:hover { color: var(--text-primary); }
 .nav-link:hover::after { width: 100%; }
 
-.nav-cta { padding: 8px 20px; font-size: var(--font-size-sm); }
+.nav-cta { padding: 9px 20px; font-size: var(--font-size-sm); }
 
-/* ── 다크/라이트 토글 ── */
+/* 다크/라이트 토글 */
 .theme-toggle {
   display: flex; align-items: center; justify-content: center;
   width: 36px; height: 36px;
   border-radius: 50%;
   background: var(--bg-card);
   border: 1px solid var(--border-strong);
-  font-size: 1rem;
-  transition: background var(--transition), transform var(--transition);
-  cursor: pointer;
-  flex-shrink: 0;
+  font-size: 0.95rem;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  cursor: pointer; flex-shrink: 0;
 }
-.theme-toggle:hover { background: var(--bg-card-alt); transform: scale(1.1); }
+.theme-toggle:hover { background: var(--bg-card-alt); transform: scale(1.1); box-shadow: var(--glow); }
 
-/* ── 컬러 팔레트 ── */
+/* 팔레트 */
 .palette-wrap { position: relative; flex-shrink: 0; }
 
 .palette-btn {
@@ -91,37 +87,33 @@
 .palette-btn:hover { background: var(--bg-card-alt); transform: scale(1.1); }
 
 .palette-icon {
-  display: block;
-  width: 18px; height: 18px;
+  display: block; width: 18px; height: 18px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255,255,255,0.4);
 }
 
 .palette-dropdown {
   position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  top: calc(100% + 10px); right: 0;
+  background: var(--bg-card-solid);
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-md);
   padding: 8px;
-  min-width: 150px;
+  min-width: 155px;
   box-shadow: var(--shadow-lg);
   z-index: 200;
   animation: fadeIn 0.15s ease;
+  backdrop-filter: blur(20px);
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
+  from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .palette-label {
-  font-size: var(--font-size-xs);
-  color: var(--text-muted);
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  font-size: 0.7rem; color: var(--text-muted);
+  font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
   padding: 4px 8px 8px;
   border-bottom: 1px solid var(--border);
   margin-bottom: 4px;
@@ -129,17 +121,15 @@
 
 .palette-item {
   display: flex; align-items: center; gap: 10px;
-  width: 100%;
-  padding: 8px 10px;
+  width: 100%; padding: 8px 10px;
   border-radius: var(--radius-sm);
-  font-size: var(--font-size-sm);
-  color: var(--text-secondary);
+  font-size: var(--font-size-sm); color: var(--text-secondary);
   cursor: pointer;
   transition: background var(--transition);
   background: none; border: none;
   font-family: var(--font-main);
 }
-.palette-item:hover { background: var(--bg-card-alt); }
+.palette-item:hover  { background: var(--bg-card-alt); color: var(--text-primary); }
 .palette-item.active { color: var(--text-primary); font-weight: 600; }
 
 .palette-swatch {
@@ -149,34 +139,31 @@
   flex-shrink: 0;
 }
 
-.palette-check { margin-left: auto; color: var(--accent); font-size: 0.8rem; font-weight: 700; }
+.palette-check { margin-left: auto; color: var(--accent); font-size: 0.75rem; font-weight: 900; }
 
-/* ── 햄버거 ── */
+/* 햄버거 */
 .hamburger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
 .hamburger span {
-  display: block; width: 24px; height: 2px;
+  display: block; width: 22px; height: 2px;
   background: var(--text-primary);
-  border-radius: 2px;
-  transition: all var(--transition);
+  border-radius: 2px; transition: all var(--transition);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .hamburger { display: flex; }
-
   .nav {
     position: fixed;
-    top: 0; right: -100%;
-    width: 280px; height: 100vh;
-    background: var(--bg-card);
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 80px 32px 32px;
-    gap: 20px;
+    top: 0; right: -100%; width: 280px; height: 100vh;
+    background: var(--bg-card-solid);
+    flex-direction: column; align-items: flex-start;
+    padding: 80px 32px 32px; gap: 20px;
     transition: right var(--transition);
     box-shadow: var(--shadow-lg);
     overflow-y: auto;
+    backdrop-filter: blur(20px);
+    border-left: 1px solid var(--border);
   }
   .nav.open { right: 0; }
-  .nav-cta { width: 100%; text-align: center; }
+  .nav-cta { width: 100%; text-align: center; justify-content: center; }
   .palette-dropdown { left: 0; right: auto; }
 }

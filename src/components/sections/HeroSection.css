@@ -6,100 +6,156 @@
   overflow: hidden;
 }
 
+/* 항상 진한 그라디언트 — 텍스트는 무조건 흰색 고정 */
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: var(--hero-gradient);
+  background: linear-gradient(135deg,
+    var(--hero-bg-start) 0%,
+    var(--hero-bg-mid)   55%,
+    var(--hero-bg-end)   100%);
   z-index: 0;
-  transition: background 0.3s ease;
+  transition: background var(--transition-slow);
 }
 
+/* 격자 패턴 오버레이 */
 .hero-bg::before {
   content: '';
   position: absolute;
-  width: 600px; height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
-  top: -100px; right: -100px;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 1;
 }
 
+/* 빛나는 오브 */
 .hero-bg::after {
   content: '';
   position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(77,142,245,0.18) 0%, transparent 65%);
+  top: -150px; right: -100px;
+  z-index: 2;
+}
+
+.hero-orb {
+  position: absolute;
   width: 400px; height: 400px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
-  bottom: 50px; left: 10%;
+  background: radial-gradient(circle, rgba(52,196,124,0.1) 0%, transparent 65%);
+  bottom: -80px; left: 5%;
+  z-index: 2;
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
-  padding-top: 100px;
-  padding-bottom: 80px;
+  z-index: 3;
+  padding-top: 120px;
+  padding-bottom: 100px;
+  max-width: 700px;
 }
 
 .hero-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 6px 16px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(77, 142, 245, 0.15);
+  border: 1px solid rgba(77, 142, 245, 0.4);
   border-radius: 20px;
   font-size: var(--font-size-xs);
   font-weight: 600;
   letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.9);
+  color: #a8c8ff;         /* 항상 밝은 색 고정 */
   margin-bottom: var(--space-lg);
   text-transform: uppercase;
 }
 
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* ▶ 버그 수정: 항상 흰색 고정, CSS 변수 불사용 */
 .hero-title {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
   font-weight: 900;
-  line-height: 1.2;
+  line-height: 1.15;
   margin-bottom: var(--space-lg);
-  color: var(--hero-text);
+  color: #ffffff;           /* 고정 흰색 — 변수 제거 */
+  letter-spacing: -0.5px;
 }
 
 .highlight {
+  display: inline-block;
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  background-image: linear-gradient(90deg, #7ab8ff, #c0d8ff);
+  background-image: linear-gradient(90deg, #7ab8ff 0%, #a8d4ff 50%, #c4e4ff 100%);
 }
 
 .hero-desc {
   font-size: var(--font-size-lg);
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.72);   /* 고정 반투명 흰색 */
   line-height: 1.8;
   margin-bottom: var(--space-xl);
-  max-width: 600px;
+  max-width: 560px;
 }
 
 .hero-actions {
   display: flex;
   gap: var(--space-md);
-  margin-bottom: var(--space-2xl);
+  margin-bottom: 60px;
   flex-wrap: wrap;
 }
 
+/* 통계 */
 .hero-stats {
   display: flex;
   align-items: center;
   gap: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-.stat { display: flex; flex-direction: column; gap: 4px; }
+.stat { display: flex; flex-direction: column; gap: 2px; }
+
 .stat strong {
-  font-size: var(--font-size-2xl);
+  font-size: 2rem;
   font-weight: 900;
-  color: var(--hero-text);
+  color: #ffffff;           /* 고정 흰색 */
+  line-height: 1;
+  background: linear-gradient(135deg, #ffffff, #a8c8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-.stat span { font-size: var(--font-size-xs); color: rgba(255,255,255,0.7); letter-spacing: 1px; }
 
-.stat-divider { width: 1px; height: 48px; background: rgba(255,255,255,0.2); }
+.stat span {
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.55);  /* 고정 반투명 */
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.stat-divider {
+  width: 1px; height: 40px;
+  background: rgba(255,255,255,0.12);
+}
 
 @media (max-width: 768px) {
   .hero-desc { font-size: var(--font-size-md); }
   .hero-stats { gap: var(--space-lg); }
+  .stat strong { font-size: 1.6rem; }
 }

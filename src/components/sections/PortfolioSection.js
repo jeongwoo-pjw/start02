@@ -14,6 +14,7 @@ export default function PortfolioSection() {
     <section id="portfolio" className="portfolio section-pad">
       <div className="container">
         <div className="section-header">
+          <span className="section-eyebrow">Portfolio</span>
           <h2 className="section-title">포트폴리오</h2>
           <p className="section-subtitle">주요 납품 및 개발 실적</p>
         </div>

@@ -29,24 +29,23 @@ export default function ServicesSection() {
     <section id="services" className="services section-pad">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">서비스</h2>
-          <p className="section-subtitle">고객의 비즈니스에 맞는 종합 IT 솔루션</p>
+          <span className="section-eyebrow">Services</span>
+          <h2 className="section-title">종합 IT 솔루션</h2>
+          <p className="section-subtitle">고객의 비즈니스에 맞는 최적의 서비스를 제공합니다</p>
         </div>
 
         <div className="services-grid">
           {SERVICES.map((svc) => (
             <div key={svc.title} className={`service-card card-${svc.color}`}>
-              <div className="service-icon">{svc.icon}</div>
+              <div className="service-icon-wrap">{svc.icon}</div>
               <h3>{svc.title}</h3>
               <p>{svc.desc}</p>
               <ul className="service-items">
                 {svc.items.map((item) => (
-                  <li key={item}>
-                    <span className="check">✓</span> {item}
-                  </li>
+                  <li key={item}><span className="check">▸</span>{item}</li>
                 ))}
               </ul>
-              <a href="#contact" className="service-cta">자세히 보기 →</a>
+              <a href="#contact" className="service-cta">자세히 알아보기 →</a>
             </div>
           ))}
         </div>

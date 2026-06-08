@@ -13,6 +13,7 @@ export default function AboutSection() {
     <section id="about" className="about section-pad">
       <div className="container">
         <div className="section-header">
+          <span className="section-eyebrow">About Us</span>
           <h2 className="section-title">회사소개</h2>
           <p className="section-subtitle">20년 이상의 신뢰와 기술력으로 함께합니다</p>
         </div>

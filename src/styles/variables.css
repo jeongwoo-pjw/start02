@@ -1,64 +1,74 @@
-/* ── 브랜드/팔레트 색상 (팔레트 전환 시 교체되는 값) ── */
+/* ── 브랜드 액센트 (팔레트 전환 시 교체) ── */
 :root {
-  --accent:        #2051a3;
+  --accent:        #4d8ef5;
   --accent-dark:   #1a3a6b;
-  --accent-hover:  #254d8e;
-  --green:         #2d6a4f;
+  --accent-hover:  #6aa0f8;
+  --green:         #34c47c;
   --green-dark:    #1b4332;
-  --red:           #a32323;
+  --red:           #f05252;
   --red-dark:      #7b1d1d;
 }
 
-/* ── 다크 모드 시맨틱 토큰 (기본) ── */
+/* ── 다크 모드 (기본) ── */
 :root,
 :root[data-theme="dark"] {
-  --bg-page:       #0d1b2a;
-  --bg-nav:        rgba(13, 27, 42, 0.95);
-  --bg-card:       #1a2a3e;
-  --bg-card-alt:   #162236;
-  --bg-input:      #1a2a3e;
+  --bg-page:       #060d1a;
+  --bg-nav:        rgba(6, 13, 26, 0.85);
+  --bg-card:       rgba(255, 255, 255, 0.05);
+  --bg-card-solid: #0c1829;
+  --bg-card-alt:   rgba(255, 255, 255, 0.03);
+  --bg-input:      rgba(255, 255, 255, 0.07);
+  --bg-section:    #080f1e;
 
-  --text-primary:   #f0f4f8;
-  --text-secondary: #c8d4e0;
-  --text-muted:     #8fa0b4;
-  --text-inverse:   #0d1b2a;
+  --text-primary:   #e8f0fe;
+  --text-secondary: #a8c0e0;
+  --text-muted:     #5878a0;
 
-  --border:        rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.2);
+  --border:        rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --glow:          0 0 20px rgba(77, 142, 245, 0.35);
+  --glow-strong:   0 0 40px rgba(77, 142, 245, 0.5);
 
-  --hero-gradient: linear-gradient(135deg, #0d1b2a 0%, #1a3a6b 60%, #0d1b2a 100%);
-  --hero-text:     #f0f4f8;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.7);
+
+  --hero-bg-start: #060d1a;
+  --hero-bg-mid:   #0d2050;
+  --hero-bg-end:   #060d1a;
 }
 
-/* ── 라이트 모드 시맨틱 토큰 ── */
+/* ── 라이트 모드 ── */
 :root[data-theme="light"] {
-  --bg-page:       #eef2f7;
-  --bg-nav:        rgba(238, 242, 247, 0.95);
+  --bg-page:       #ffffff;
+  --bg-nav:        rgba(255, 255, 255, 0.92);
   --bg-card:       #ffffff;
-  --bg-card-alt:   #f4f7fb;
-  --bg-input:      #ffffff;
+  --bg-card-solid: #ffffff;
+  --bg-card-alt:   #f0f5ff;
+  --bg-input:      #f8faff;
+  --bg-section:    #f5f8ff;
 
-  --text-primary:   #0d1b2a;
-  --text-secondary: #2d4057;
-  --text-muted:     #5a7090;
-  --text-inverse:   #f0f4f8;
+  --text-primary:   #0a1628;
+  --text-secondary: #2a4470;
+  --text-muted:     #5878a0;
 
-  --border:        rgba(0, 0, 0, 0.1);
-  --border-strong: rgba(0, 0, 0, 0.2);
+  --border:        rgba(10, 22, 40, 0.1);
+  --border-strong: rgba(10, 22, 40, 0.2);
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+  --glow:          0 0 20px rgba(32, 81, 163, 0.15);
+  --glow-strong:   0 0 40px rgba(32, 81, 163, 0.25);
 
-  --hero-gradient: linear-gradient(135deg, #1a3a6b 0%, #2051a3 60%, #1a3a6b 100%);
-  --hero-text:     #ffffff;
+  --shadow-sm: 0 1px 3px rgba(10, 22, 40, 0.08);
+  --shadow-md: 0 4px 20px rgba(10, 22, 40, 0.1);
+  --shadow-lg: 0 8px 40px rgba(10, 22, 40, 0.14);
+
+  --hero-bg-start: #0a1e4a;
+  --hero-bg-mid:   #1a3a8a;
+  --hero-bg-end:   #0a1e4a;
 }
 
-/* ── 타이포그래피 & 스페이싱 (모드 무관) ── */
+/* ── 공통 ── */
 :root {
   --font-main:     'Noto Sans KR', 'Segoe UI', sans-serif;
   --font-size-xs:  0.75rem;
@@ -77,8 +87,10 @@
   --space-2xl: 64px;
 
   --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
+  --radius-md: 10px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
 
   --transition: 0.25s ease;
+  --transition-slow: 0.4s ease;
 }
