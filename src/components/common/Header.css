@@ -10,8 +10,47 @@
   background: var(--bg-nav);
   padding: 12px 0;
   box-shadow: 0 1px 0 var(--border), var(--shadow-md);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* 라이트 모드 — 히어로 위 (투명 구간): 텍스트 흰색 유지 */
+:root[data-theme="light"] .header.in-hero:not(.scrolled) .nav-link,
+:root[data-theme="light"] .header.in-hero:not(.scrolled) .logo-text {
+  color: rgba(255, 255, 255, 0.92);
+}
+:root[data-theme="light"] .header.in-hero:not(.scrolled) .nav-link::after {
+  background: rgba(255, 255, 255, 0.8);
+}
+:root[data-theme="light"] .header.in-hero:not(.scrolled) .hamburger span {
+  background: rgba(255, 255, 255, 0.9);
+}
+:root[data-theme="light"] .header.in-hero:not(.scrolled) .theme-toggle,
+:root[data-theme="light"] .header.in-hero:not(.scrolled) .palette-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+/* 라이트 모드 — 스크롤 후: 흰 배경 + 선명한 파란 텍스트 */
+:root[data-theme="light"] .header.scrolled {
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 1px 0 rgba(10,22,40,0.08), 0 4px 20px rgba(10,22,40,0.08);
+}
+:root[data-theme="light"] .header.scrolled .nav-link {
+  color: var(--text-secondary);
+}
+:root[data-theme="light"] .header.scrolled .nav-link:hover {
+  color: var(--accent);
+}
+:root[data-theme="light"] .header.scrolled .logo-text {
+  color: var(--text-primary);
+}
+:root[data-theme="light"] .header.scrolled .theme-toggle,
+:root[data-theme="light"] .header.scrolled .palette-btn {
+  background: var(--bg-card);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
 }
 
 .header-inner { display: flex; align-items: center; justify-content: space-between; }

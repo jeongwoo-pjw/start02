@@ -7,7 +7,7 @@ export default function HeroSection() {
       <div className="hero-orb" />
       <div className="container hero-content">
         <p className="hero-badge">
-          <span className="hero-badge-dot" />
+          <i className="fa-solid fa-microchip hero-badge-icon" />
           Since 2003.09.23
         </p>
         <h1 className="hero-title">

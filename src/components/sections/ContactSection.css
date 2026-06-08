@@ -22,10 +22,12 @@
 
 .info-icon-wrap {
   display: flex; align-items: center; justify-content: center;
-  width: 40px; height: 40px; flex-shrink: 0;
+  width: 42px; height: 42px; flex-shrink: 0;
   background: rgba(77,142,245,0.12);
   border-radius: var(--radius-sm);
-  font-size: 1.1rem;
+  font-size: 1rem;
+  color: var(--accent);
+  border: 1px solid rgba(77,142,245,0.2);
 }
 .info-item strong { display: block; font-size: var(--font-size-xs); font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
 .info-item p      { color: var(--text-primary); font-size: var(--font-size-sm); font-weight: 500; }
@@ -71,7 +73,7 @@ textarea { resize: vertical; }
   padding: var(--space-2xl) var(--space-xl);
   text-align: center;
 }
-.sent-msg span { font-size: 3rem; }
+.sent-icon { font-size: 3rem; color: var(--green); filter: drop-shadow(0 0 16px var(--green)); }
 .sent-msg p { color: var(--text-secondary); font-size: var(--font-size-lg); }
 
 @media (max-width: 900px) {

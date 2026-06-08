@@ -12,13 +12,18 @@ const NAV_LINKS = [
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [inHero, setInHero] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const paletteRef = useRef(null);
   const { isDark, setIsDark, paletteId, setPaletteId, palettes } = useTheme();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 50);
+      setInHero(y < window.innerHeight * 0.85);
+    };
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -33,8 +38,14 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const headerClass = [
+    'header',
+    scrolled ? 'scrolled' : '',
+    inHero ? 'in-hero' : '',
+  ].filter(Boolean).join(' ');
+
   return (
-    <header className={`header${scrolled ? ' scrolled' : ''}`}>
+    <header className={headerClass}>
       <div className="container header-inner">
         <a href="#home" className="logo">
           <span className="logo-mark">JW</span>
@@ -43,12 +54,7 @@ export default function Header() {
 
         <nav className={`nav${menuOpen ? ' open' : ''}`}>
           {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="nav-link"
-              onClick={() => setMenuOpen(false)}
-            >
+            <a key={link.href} href={link.href} className="nav-link" onClick={() => setMenuOpen(false)}>
               {link.label}
             </a>
           ))}
@@ -61,17 +67,15 @@ export default function Header() {
             aria-label={isDark ? '라이트 모드로 전환' : '다크 모드로 전환'}
             title={isDark ? '라이트 모드' : '다크 모드'}
           >
-            {isDark ? '☀️' : '🌙'}
+            {isDark
+              ? <i className="fa-solid fa-sun" />
+              : <i className="fa-solid fa-moon" />
+            }
           </button>
 
           {/* 컬러 팔레트 */}
           <div className="palette-wrap" ref={paletteRef}>
-            <button
-              className="palette-btn"
-              onClick={() => setPaletteOpen(!paletteOpen)}
-              aria-label="컬러 테마 선택"
-              title="컬러 테마"
-            >
+            <button className="palette-btn" onClick={() => setPaletteOpen(!paletteOpen)} aria-label="컬러 테마 선택" title="컬러 테마">
               <span className="palette-icon" style={{ background: palettes.find(p => p.id === paletteId)?.swatch }} />
             </button>
             {paletteOpen && (
@@ -85,7 +89,7 @@ export default function Header() {
                   >
                     <span className="palette-swatch" style={{ background: p.swatch }} />
                     <span>{p.label}</span>
-                    {paletteId === p.id && <span className="palette-check">✓</span>}
+                    {paletteId === p.id && <i className="fa-solid fa-check palette-check" />}
                   </button>
                 ))}
               </div>
