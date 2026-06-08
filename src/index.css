@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+@import './styles/variables.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: var(--font-size-md);
+  color: var(--white);
+  background-color: var(--dark-blue);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-main);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.section-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: var(--space-sm);
+}
+
+.section-subtitle {
+  font-size: var(--font-size-md);
+  color: var(--gray-400);
+  margin-bottom: var(--space-xl);
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 12px 32px;
+  background: var(--royal-blue);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  transition: background var(--transition);
+}
+
+.btn-primary:hover {
+  background: var(--royal-blue-hover);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 12px 32px;
+  border: 2px solid var(--royal-blue-light);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  transition: all var(--transition);
+}
+
+.btn-outline:hover {
+  background: var(--royal-blue-light);
+}

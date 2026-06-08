@@ -1,0 +1,127 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--dark-blue) 0%, var(--royal-blue) 60%, var(--dark-blue) 100%);
+  z-index: 0;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26, 58, 107, 0.4) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(27, 67, 50, 0.2) 0%, transparent 70%);
+  bottom: 50px;
+  left: 10%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 100px;
+  padding-bottom: 80px;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(26, 58, 107, 0.6);
+  border: 1px solid var(--royal-blue-light);
+  border-radius: 20px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--gray-200);
+  margin-bottom: var(--space-lg);
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: var(--space-lg);
+  color: var(--white);
+}
+
+.highlight {
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: linear-gradient(90deg, var(--royal-blue-light), #5b9cf6);
+}
+
+.hero-desc {
+  font-size: var(--font-size-lg);
+  color: var(--gray-400);
+  line-height: 1.8;
+  margin-bottom: var(--space-xl);
+  max-width: 600px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
+  flex-wrap: wrap;
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat strong {
+  font-size: var(--font-size-2xl);
+  font-weight: 900;
+  color: var(--white);
+}
+
+.stat span {
+  font-size: var(--font-size-xs);
+  color: var(--gray-400);
+  letter-spacing: 1px;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+  .hero-desc {
+    font-size: var(--font-size-md);
+  }
+
+  .hero-stats {
+    gap: var(--space-lg);
+  }
+}
