@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useTheme } from '../../context/ThemeContext';
 import './Header.css';
 
 const NAV_LINKS = [
@@ -12,6 +13,9 @@ const NAV_LINKS = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const paletteRef = useRef(null);
+  const { isDark, setIsDark, paletteId, setPaletteId, palettes } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -19,11 +23,21 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (paletteRef.current && !paletteRef.current.contains(e.target)) {
+        setPaletteOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <header className={`header${scrolled ? ' scrolled' : ''}`}>
       <div className="container header-inner">
         <a href="#home" className="logo">
-          <span className="logo-mark">JS</span>
+          <span className="logo-mark">JW</span>
           <span className="logo-text">JWIT</span>
         </a>
 
@@ -39,6 +53,44 @@ export default function Header() {
             </a>
           ))}
           <a href="#contact" className="btn-primary nav-cta">문의하기</a>
+
+          {/* 다크/라이트 토글 */}
+          <button
+            className="theme-toggle"
+            onClick={() => setIsDark(!isDark)}
+            aria-label={isDark ? '라이트 모드로 전환' : '다크 모드로 전환'}
+            title={isDark ? '라이트 모드' : '다크 모드'}
+          >
+            {isDark ? '☀️' : '🌙'}
+          </button>
+
+          {/* 컬러 팔레트 */}
+          <div className="palette-wrap" ref={paletteRef}>
+            <button
+              className="palette-btn"
+              onClick={() => setPaletteOpen(!paletteOpen)}
+              aria-label="컬러 테마 선택"
+              title="컬러 테마"
+            >
+              <span className="palette-icon" style={{ background: palettes.find(p => p.id === paletteId)?.swatch }} />
+            </button>
+            {paletteOpen && (
+              <div className="palette-dropdown">
+                <p className="palette-label">컬러 테마</p>
+                {palettes.map((p) => (
+                  <button
+                    key={p.id}
+                    className={`palette-item${paletteId === p.id ? ' active' : ''}`}
+                    onClick={() => { setPaletteId(p.id); setPaletteOpen(false); }}
+                  >
+                    <span className="palette-swatch" style={{ background: p.swatch }} />
+                    <span>{p.label}</span>
+                    {paletteId === p.id && <span className="palette-check">✓</span>}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
 
         <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="메뉴">
